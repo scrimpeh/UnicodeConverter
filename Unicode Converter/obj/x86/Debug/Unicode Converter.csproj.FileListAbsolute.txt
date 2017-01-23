@@ -1,5 +1,0 @@
-C:\Users\scrimp\Documents\Visual Studio 2012\Projects\Unicode Converter\Unicode Converter\bin\x86\Debug\Unicode Converter.exe.config
-C:\Users\scrimp\Documents\Visual Studio 2012\Projects\Unicode Converter\Unicode Converter\bin\x86\Debug\Unicode Converter.exe
-C:\Users\scrimp\Documents\Visual Studio 2012\Projects\Unicode Converter\Unicode Converter\bin\x86\Debug\Unicode Converter.pdb
-C:\Users\scrimp\Documents\Visual Studio 2012\Projects\Unicode Converter\Unicode Converter\obj\x86\Debug\Unicode Converter.exe
-C:\Users\scrimp\Documents\Visual Studio 2012\Projects\Unicode Converter\Unicode Converter\obj\x86\Debug\Unicode Converter.pdb
