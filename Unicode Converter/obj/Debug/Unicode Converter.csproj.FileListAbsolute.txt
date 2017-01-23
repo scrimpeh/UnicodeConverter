@@ -1,0 +1,6 @@
+c:\users\scrimp\documents\visual studio 2012\Projects\Unicode Converter\Unicode Converter\bin\Debug\Unicode Converter.exe.config
+c:\users\scrimp\documents\visual studio 2012\Projects\Unicode Converter\Unicode Converter\obj\Debug\Unicode Converter.csprojResolveAssemblyReference.cache
+c:\users\scrimp\documents\visual studio 2012\Projects\Unicode Converter\Unicode Converter\bin\Debug\Unicode Converter.exe
+c:\users\scrimp\documents\visual studio 2012\Projects\Unicode Converter\Unicode Converter\bin\Debug\Unicode Converter.pdb
+c:\users\scrimp\documents\visual studio 2012\Projects\Unicode Converter\Unicode Converter\obj\Debug\Unicode Converter.exe
+c:\users\scrimp\documents\visual studio 2012\Projects\Unicode Converter\Unicode Converter\obj\Debug\Unicode Converter.pdb
