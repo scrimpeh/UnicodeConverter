@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace UnicodeConverter
 {
@@ -17,7 +13,7 @@ namespace UnicodeConverter
 
 		public FrakturConverter()
 		{
-			ConversionType = Util.ConverterType.FRAKTURBOLD;
+			ConversionType = Util.ConverterType.FrakturBold;
 			InitConversionRules();
 		}
 
@@ -26,13 +22,13 @@ namespace UnicodeConverter
 			conversionRules = new List<ConversionRule>(ConversionRule.FromAlphabet(0x1D56C, false));
 		}
 
-				public override string ConvertChar(char ch)
+		public override string ConvertChar(char ch)
 		{
 			if (CanConvertChar(ch))
 			{
 				return Util.Find(conversionRules, ch).Convert(ch);
 			}
-			return Char.ConvertFromUtf32(ch);
+			return char.ConvertFromUtf32(ch);
 		}
 
 		public override bool CanConvertChar(char ch)

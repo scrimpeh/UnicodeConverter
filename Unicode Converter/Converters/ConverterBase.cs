@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnicodeConverter.Converters;
+
 using ConverterType = UnicodeConverter.Util.ConverterType;
 
 namespace UnicodeConverter
@@ -58,15 +57,15 @@ namespace UnicodeConverter
 		{
 			switch (type)
 			{
-				case ConverterType.DUMMY:
+				case ConverterType.Dummy:
 					return new DummyConverter();
-				case ConverterType.FULLWIDTH:
+				case ConverterType.Fullwidth:
 					return new FullwidthConverter();
-				case ConverterType.SCRIPTBOLD:
+				case ConverterType.ScriptBold:
 					return new ScriptBoldConverter();
-				case ConverterType.FRAKTURBOLD:
+				case ConverterType.FrakturBold:
 					return new FrakturConverter();
-				case ConverterType.MONOSPACE:
+				case ConverterType.Monospace:
 					return new MonospaceConverter();
 				default:
 					throw new Exception("Can't find appropriate converter!");
@@ -91,12 +90,12 @@ namespace UnicodeConverter
 	{
 		public DummyConverter()
 		{
-			ConversionType = ConverterType.DUMMY;
+			ConversionType = ConverterType.Dummy;
 		}
 
 		public override string ConvertChar(char ascii)
 		{
-			return Char.ConvertFromUtf32(ascii);
+			return char.ConvertFromUtf32(ascii);
 		}
 
 		public override bool CanConvertChar(char ascii)
@@ -114,14 +113,14 @@ namespace UnicodeConverter
 
 		public FullwidthConverter()
 		{
-			ConversionType = ConverterType.FULLWIDTH;
+			ConversionType = ConverterType.Fullwidth;
 			InitConversionRules();
 		}
 
 		private void InitConversionRules()
 		{
 			conversionRules = new List<ConversionRule>();
-			conversionRules.Add(new ConversionRule('\u0021', '\u007e', 0xFEE0)); //Ascii Characters
+			conversionRules.Add(new ConversionRule('\u0021', '\u007e', 0xFEE0)); //ASCII Characters
 			conversionRules.Add(new ConversionRule(' ', '\u3000')); //Space.
 		}
 
@@ -133,7 +132,7 @@ namespace UnicodeConverter
 			}
 			else if (Program.allowWrongInput)
 			{
-				return Char.ConvertFromUtf32(ch);
+				return char.ConvertFromUtf32(ch);
 			}
 			else throw new CannotConvertException();
 		}

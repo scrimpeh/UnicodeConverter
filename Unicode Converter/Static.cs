@@ -8,12 +8,12 @@ using System.Runtime.Serialization;
 namespace UnicodeConverter
 {
 	/// <summary>
-	/// Contains basic constant Strings to display to the user, along with Dictionaries and Associations
+	/// Contains basic constant strings to display to the user, along with dictionaries and associations
 	/// to identify various strings as belonging to various components.
 	/// </summary>
 	public static class Strings
 	{
-		public const string WELCOMEMSG = 
+		public const string WelcomeMsg = 
 			"Welcome to ASCII-Converter v 2.0.\n" + 
 			"Type /h for help. Type /q for quit.\n" +
 			"Results are stored in the clipboard.";
@@ -23,37 +23,37 @@ namespace UnicodeConverter
 		/// </summary>
 		public static readonly IDictionary<Util.ConverterType, List<string>> converterAssocs = new Dictionary<Util.ConverterType, List<string>>()
 		{
-			{ Util.ConverterType.DUMMY, new List<string>() { "dummy", "d" } },
-			{ Util.ConverterType.FULLWIDTH, new List<string>() {"fullwidth", "full width", "weaboo", "fw", "f"} },
-			{ Util.ConverterType.SCRIPTBOLD, new List<string>() {"scriptbold", "sb" } },
-			{ Util.ConverterType.FRAKTURBOLD, new List<string>() {"frakturbold", "fraktur", "fb", "fr" } },
-			{ Util.ConverterType.MONOSPACE, new List<string>() {"monospace", "ms", "mono"} }
+			{ Util.ConverterType.Dummy, new List<string>() { "dummy", "d" } },
+			{ Util.ConverterType.Fullwidth, new List<string>() {"fullwidth", "full width", "weaboo", "fw", "f"} },
+			{ Util.ConverterType.ScriptBold, new List<string>() {"scriptbold", "sb" } },
+			{ Util.ConverterType.FrakturBold, new List<string>() {"frakturbold", "fraktur", "fb", "fr" } },
+			{ Util.ConverterType.Monospace, new List<string>() {"monospace", "ms", "mono"} }
 		};
 
-		private static readonly string[] HELPMSG_HELP =
+		private static readonly string[] HelpMsg_Help =
 		{
 			"/<help> <command?>",
 			"Displays a short help notice for the given topic",
 			"If no command is specified, it lists off all possible user commands"
 		};
 
-		private static readonly string[] HELPMSG_LIST =
+		private static readonly string[] HelpMsg_List =
 		{
 			"/<list>",
 			"Lists all available converters and their aliases."
 		};
 
-		private static readonly string[] HELPMSG_QUIT =
+		private static readonly string[] HelpMsg_Quit =
 		{
 			"/<quit>",
 			"Exits the program"
 		};
 
-		public static readonly IDictionary<string, string[]> HELPTOPICS = new Dictionary<string, string[]>()
+		public static readonly IDictionary<string, string[]> HelpTopics = new Dictionary<string, string[]>()
 		{
-			{ "help", HELPMSG_HELP },
-			{ "list", HELPMSG_LIST },
-			{ "quit", HELPMSG_QUIT }
+			{ "help", HelpMsg_Help },
+			{ "list", HelpMsg_List },
+			{ "quit", HelpMsg_Quit }
 		};
 
 	}
@@ -68,10 +68,10 @@ namespace UnicodeConverter
 		public CannotConvertException() : base() { }
 
 		public CannotConvertException(string input, int index) : 
-			base(String.Format("Couldn't convert {0} at index {1}!", input, index)) { }
+			base($"Couldn't convert {input} at index {index}!") { }
 
 		public CannotConvertException(string input, int index, Exception inner) :
-			base(String.Format("Couldn't convert {0} at index {1}!", input, index), inner) { }
+			base($"Couldn't convert {input} at index {index}!", inner) { }
 
 		protected CannotConvertException(SerializationInfo info, StreamingContext context) :
 			base(info, context) { }
@@ -85,26 +85,26 @@ namespace UnicodeConverter
 	{
 		public enum ConverterType
 		{
-			DUMMY,
-			FULLWIDTH,
-			SCRIPTBOLD,
-			FRAKTURBOLD,
-			MONOSPACE
+			Dummy,
+			Fullwidth,
+			ScriptBold,
+			FrakturBold,
+			Monospace
 		}
 
 		public static string GetName(this ConverterType value)
 		{
 			switch (value)
 			{
-				case ConverterType.DUMMY:
+				case ConverterType.Dummy:
 					return "Default";
-				case ConverterType.FULLWIDTH:
+				case ConverterType.Fullwidth:
 					return "Full Width Encoding";
-				case ConverterType.SCRIPTBOLD:
+				case ConverterType.ScriptBold:
 					return "Mathematical Script Bold";
-				case ConverterType.FRAKTURBOLD:
+				case ConverterType.FrakturBold:
 					return "Fraktur Bold";
-				case ConverterType.MONOSPACE:
+				case ConverterType.Monospace:
 					return "Monospace";
 				default:
 					return "Null";
@@ -119,7 +119,7 @@ namespace UnicodeConverter
 		public static ConverterType GetConverterTypeFromString(string name)
 		{
 			ConverterType? key = Strings.converterAssocs.FirstOrDefault(entry => entry.Value.Contains(name)).Key;
-			return key ?? ConverterType.DUMMY;
+			return key ?? ConverterType.Dummy;
 		}
 
 		/// <summary>
@@ -129,7 +129,7 @@ namespace UnicodeConverter
 		/// <returns></returns>
 		public static string Collect(IEnumerable<string> codePoints)
 		{
-			StringBuilder sb = new StringBuilder(codePoints.Count());
+			var sb = new StringBuilder(codePoints.Count());
 			foreach (string ch in codePoints)
 			{
 				sb.Append(ch);
@@ -254,7 +254,7 @@ namespace UnicodeConverter
 				throw new ArgumentException("Char not in range!");
 			}
 
-			return Char.ConvertFromUtf32(ch + Offset);
+			return char.ConvertFromUtf32(ch + Offset);
 		}
 
 		/// <summary>
@@ -285,8 +285,8 @@ namespace UnicodeConverter
 		/// <returns>A string representation of this conversion rule.</returns>
 		public override string ToString()
 		{
-			StringBuilder sbChar = new StringBuilder("[");
-			StringBuilder sbConverted = new StringBuilder("[");
+			var sbChar = new StringBuilder("[");
+			var sbConverted = new StringBuilder("[");
 
 			char[] chars = CoveredCharacters;
 			string[] convertedChars = chars.Select(ch => Convert(ch)).ToArray();
@@ -296,14 +296,14 @@ namespace UnicodeConverter
 
 			for(int i = 1; i < chars.Length; i++)
 			{
-				sbChar.Append(String.Format(" {0}", chars[i]));
-				sbConverted.Append(String.Format(" {0}", convertedChars[i]));
+				sbChar.Append($" {chars[i]}");
+				sbConverted.Append($" {convertedChars[i]}");
 			}
 
 			sbChar.Append(']');
 			sbConverted.Append(']');
 
-			return String.Format("{0} -> {1}", sbChar.ToString(), sbConverted.ToString());
+			return $"{sbChar.ToString()} -> {sbConverted.ToString()}";
 		}
 
 		/// <summary>

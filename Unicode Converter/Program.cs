@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace UnicodeConverter
@@ -23,17 +22,16 @@ namespace UnicodeConverter
 		[STAThread]
 		static void Main(string[] args)
 		{
-			//This is gonna be made a whole lot prettier at one point.
 			string input;
-			currentConverter = Converter.GetConverter(Util.ConverterType.DUMMY);
+			currentConverter = Converter.GetConverter(Util.ConverterType.Dummy);
 
-			Console.WriteLine("\n{0}\n", Strings.WELCOMEMSG);
+			Console.WriteLine("\n{0}\n", Strings.WelcomeMsg);
 
 			while (!quit)
 			{
 				input = Console.ReadLine();
 
-				if (String.IsNullOrWhiteSpace(input)) continue;
+				if (string.IsNullOrWhiteSpace(input)) continue;
 
 				//Commands
 				if (input[0] == '/' || input[0] == '\\')
@@ -48,7 +46,7 @@ namespace UnicodeConverter
 					{
 						//Couldn't recognize any command, trying to set the converter.
 						Util.ConverterType type = Util.GetConverterTypeFromString(command);
-						if (type == Util.ConverterType.DUMMY)
+						if (type == Util.ConverterType.Dummy)
 						{
 							Console.WriteLine("Invalid comamnd! Type /h for help!");
 						}
@@ -129,9 +127,9 @@ namespace UnicodeConverter
 			}
 
 			Util.ConverterType type = Util.GetConverterTypeFromString(args[1]);
-			string outputLine = type == Util.ConverterType.DUMMY ?
+			string outputLine = type == Util.ConverterType.Dummy ?
 				"Could not find specified converter. Using default instead." :
-				String.Format("Using {0}...", type.GetName());
+				$"Using {type.GetName()}...";
 			Console.WriteLine(outputLine);
 			currentConverter = Converter.GetConverter(type);
 		}
@@ -148,7 +146,7 @@ namespace UnicodeConverter
 			else try
 			{
 				string queriedCommand = commandAssocs.FirstOrDefault(entry => entry.Value.Contains(args[1])).Key ?? "";
-				string[] helpMessage = Strings.HELPTOPICS[queriedCommand];
+				string[] helpMessage = Strings.HelpTopics[queriedCommand];
 				var aliases = commandAssocs[queriedCommand].ToArray();
 
 				Console.WriteLine("{0}:", queriedCommand.ToUpper());
@@ -178,7 +176,7 @@ namespace UnicodeConverter
 		private static void ListCommands()
 		{
 			Console.WriteLine("Help Commands:\n");
-			foreach (var assoc in Strings.HELPTOPICS)
+			foreach (var assoc in Strings.HelpTopics)
 			{
 				Console.WriteLine("{0}: {1}", assoc.Key, assoc.Value[1]);
 			}

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace UnicodeConverter
 {
-	//Contains mostly miscellaneous converters...
+	//Contains mostly miscellaneous converters
 
 	/// <summary>
 	/// MonospaceConverter
@@ -17,7 +17,7 @@ namespace UnicodeConverter
 
 		public MonospaceConverter()
 		{
-			ConversionType = Util.ConverterType.MONOSPACE;
+			ConversionType = Util.ConverterType.Monospace;
 			InitConversionRules();
 		}
 
@@ -32,7 +32,7 @@ namespace UnicodeConverter
 			{
 				return Util.Find(conversionRules, ch).Convert(ch);
 			}
-			return Char.ConvertFromUtf32(ch);
+			return char.ConvertFromUtf32(ch);
 		}
 
 		public override bool CanConvertChar(char ch)

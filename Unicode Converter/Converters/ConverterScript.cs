@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace UnicodeConverter.Converters
 {
@@ -18,7 +14,7 @@ namespace UnicodeConverter.Converters
 
 		public ScriptBoldConverter()
 		{
-			ConversionType = Util.ConverterType.SCRIPTBOLD;
+			ConversionType = Util.ConverterType.ScriptBold;
 			InitConversionRules();
 		}
 
@@ -33,7 +29,7 @@ namespace UnicodeConverter.Converters
 			{
 				return Util.Find(conversionRules, ch).Convert(ch);
 			}
-			return Char.ConvertFromUtf32(ch);
+			return char.ConvertFromUtf32(ch);
 		}
 
 		public override bool CanConvertChar(char ch)
